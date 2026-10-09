@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>لوحة الإدارة | IRON GYM</title>
+<link rel="icon" href="images/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/all.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/client.css">
+<style>.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:760px}th,td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--line);font-size:15px}th{color:var(--mut);font-weight:600}.act button{margin:2px;height:34px;padding:0 12px;border-radius:6px;border:1px solid var(--line);background:transparent;color:#fff;cursor:pointer;font:inherit}.act .y{background:#157a52;border-color:#157a52}.act .n{background:#8a2430;border-color:#8a2430}</style>
+</head>
+<body>
+<header class="header">
+  <a href="index.html" class="logo"><span class="s-logo">IRON <strong>GYM</strong></span><img src="images/logo.png" alt="" class="img-logo"></a>
+  <ul class="list1" style="display:flex"><li><a href="index.html">الموقع</a></li></ul>
+  <button class="im-client" id="out">تسجيل خروج</button>
+</header>
+<main class="dash">
+  <div class="dh"><div><span class="st ok">إدارة</span><h1>الأعضاء والاشتراكات</h1></div></div>
+  <div class="g3" id="stats"></div>
+  <section class="pn"><h2><i class="fa-solid fa-users"></i> كل الأعضاء</h2><div class="tw"><table><thead><tr><th>الاسم</th><th>الموبايل</th><th>الباقة</th><th>الدفع</th><th>الحالة</th><th>Rounds</th><th>إجراءات</th></tr></thead><tbody id="rows"></tbody></table></div></section>
+</main>
+<script src="JS/app.js"></script>
+<script>
+(function(){
+ var k=DB.cur();if(!k||DB.users()[k].role!=='admin'){location.replace('login.html');return}
+ $('#out').onclick=function(){DB.logout();location.href='index.html'};
+ var T={active:'فعّال',pending:'قيد المراجعة',rejected:'مرفوض'};
+ function draw(){
+  var U=DB.users(),ks=Object.keys(U).filter(function(x){return U[x].role!=='admin'}),pend=0,act=0,rev=0;
+  var h=ks.map(function(x){var u=U[x],s=u.sub;if(!s)return '<tr><td>'+esc(u.name)+'<br><small class="mut">'+esc(x)+'</small></td><td>'+esc(u.phone)+'</td><td colspan="5" class="mut">بدون اشتراك</td></tr>';
+   var i=subInfo(s);if(s.status==='pending')pend++;if(s.status==='active'){act++;rev+=+s.amount||0}
+   return '<tr><td>'+esc(u.name)+'<br><small class="mut">'+esc(x)+'</small></td><td dir="ltr" style="text-align:right">'+esc(u.phone)+'</td><td>'+i.p.n+'<br><small class="mut">'+fmtDate(i.start)+'</small></td><td>'+esc(s.amount)+' ج.م<br><small class="mut">'+esc(s.method)+' '+esc(s.from||'')+' '+esc(s.tx||'')+'</small></td><td>'+(T[s.status]||'')+(i.expired&&s.status==='active'?' (منتهي)':'')+'</td><td>'+(s.used||0)+' / '+i.p.rounds+'</td><td class="act">'+
+   '<button class="y" data-a="act" data-k="'+esc(x)+'">تفعيل</button><button class="n" data-a="rej" data-k="'+esc(x)+'">رفض</button><button data-a="att" data-k="'+esc(x)+'">+ حضور</button></td></tr>'}).join('');
+  $('#rows').innerHTML=h||'<tr><td colspan="7" class="mut">لا يوجد أعضاء بعد.</td></tr>';
+  $('#stats').innerHTML='<section class="pn"><div class="big">'+ks.length+'</div><p class="mut">عدد الأعضاء</p></section><section class="pn"><div class="big">'+act+'</div><p class="mut">اشتراكات فعّالة</p></section><section class="pn"><div class="big">'+pend+'</div><p class="mut">بانتظار المراجعة</p></section><section class="pn"><div class="big">'+rev+' <small>ج.م</small></div><p class="mut">إيراد الاشتراكات الفعّالة</p></section>';
+ }
+ $('#rows').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+  var U=DB.users(),u=U[b.dataset.k],s=u&&u.sub;if(!s)return;
+  if(b.dataset.a==='act'){s.status='active';s.start=s.start||isoDay(0)}
+  if(b.dataset.a==='rej')s.status='rejected';
+  if(b.dataset.a==='att'&&s.status==='active'&&(s.used||0)<PLANS[s.plan].rounds)s.used=(s.used||0)+1;
+  DB.save(U);draw()});
+ draw();
+})();
+</script>
+</body>
+</html>

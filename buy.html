@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الاشتراك | IRON GYM</title>
+<link rel="icon" href="images/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/all.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+<header class="header">
+  <a href="index.html" class="logo"><span class="s-logo">IRON <strong>GYM</strong></span><img src="images/logo.png" alt="شعار IRON GYM" class="img-logo"></a>
+  <button class="burger" aria-label="القائمة" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  <ul class="list1">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="index.html#plans">الباقات</a></li>
+    <li><a href="index.html#reviews">آراء الأعضاء</a></li>
+    <li><a href="index.html#about">من نحن</a></li>
+    <li><a href="index.html#contact">التواصل</a></li>
+  </ul>
+  <a href="login.html" class="im-client" id="memberBtn">أنا عضو</a>
+</header>
+<main class="page"><div class="box wide" id="wrap">
+  <h1>الاشتراك في الجيم</h1><p class="sub">املا بياناتك وبيانات الدفع، وهتتفعل عضويتك بعد مراجعة الإدارة (خلال 24 ساعة).</p>
+  <div class="buy-wrap">
+   <div id="form">
+    <h2 class="sec-t">1. اختار الباقة</h2>
+    <div class="plans-pick" id="pp"></div>
+    <h2 class="sec-t">2. بياناتك</h2>
+    <div class="grid2">
+     <div><label class="fl" for="n">الاسم بالكامل</label><input class="fi" id="n"></div>
+     <div><label class="fl" for="ph">رقم الموبايل</label><input class="fi" id="ph" inputmode="tel" placeholder="01XXXXXXXXX"></div>
+     <div><label class="fl" for="age">السن</label><input class="fi" id="age" type="number" min="12" max="80"></div>
+     <div><label class="fl" for="goal">هدفك</label><select class="fi" id="goal"><option>تضخيم</option><option>تنشيف</option><option>لياقة عامة</option></select></div>
+     <div><label class="fl" for="start">تاريخ بداية الاشتراك</label><input class="fi" id="start" type="date"></div>
+    </div>
+    <div id="acc"><h2 class="sec-t">3. بيانات الحساب</h2>
+     <div class="grid2"><div><label class="fl" for="u">اسم المستخدم</label><input class="fi" id="u" autocapitalize="off" autocomplete="username"></div>
+     <div><label class="fl" for="pw">كلمة المرور</label><input class="fi" id="pw" type="password" autocomplete="new-password"></div></div></div>
+    <h2 class="sec-t" id="payT">4. الدفع</h2>
+    <div class="grid2">
+     <div><label class="fl" for="meth">طريقة الدفع</label><select class="fi" id="meth"><option>فودافون كاش</option><option>إنستاباي</option><option>كاش في الجيم</option></select></div>
+     <div><label class="fl" for="amt">المبلغ المدفوع (ج.م)</label><input class="fi" id="amt" type="number" min="0"></div>
+     <div><label class="fl" for="from">رقم المحوّل منه</label><input class="fi" id="from" inputmode="tel"></div>
+     <div><label class="fl" for="tx">رقم العملية أو ملاحظة</label><input class="fi" id="tx"></div>
+    </div>
+    <div class="paybox" id="payInfo"></div>
+    <div class="msg" id="m" role="alert" tabindex="-1"></div>
+    <button class="btn-main" id="go">تأكيد الاشتراك</button>
+   </div>
+   <aside class="sum"><h2>ملخص الطلب</h2><dl id="sum"></dl><div class="tot" id="tot"></div></aside>
+  </div>
+</div></main>
+<script src="JS/app.js"></script>
+<script src="JS/buy.js"></script>
+</body>
+</html>

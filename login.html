@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دخول الأعضاء | IRON GYM</title>
+<link rel="icon" href="images/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/all.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+<header class="header">
+  <a href="index.html" class="logo"><span class="s-logo">IRON <strong>GYM</strong></span><img src="images/logo.png" alt="شعار IRON GYM" class="img-logo"></a>
+  <button class="burger" aria-label="القائمة" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  <ul class="list1">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="index.html#plans">الباقات</a></li>
+    <li><a href="index.html#reviews">آراء الأعضاء</a></li>
+    <li><a href="index.html#about">من نحن</a></li>
+    <li><a href="index.html#contact">التواصل</a></li>
+  </ul>
+  <a href="login.html" class="im-client" id="memberBtn">أنا عضو</a>
+</header>
+<main class="page"><div class="box">
+  <h1>دخول الأعضاء</h1><p class="sub">ادخل باسم المستخدم وكلمة المرور اللي سجّلت بيهم.</p>
+  <label class="fl" for="u">اسم المستخدم</label><input class="fi" id="u" autocomplete="username" autocapitalize="off">
+  <label class="fl" for="p">كلمة المرور</label>
+  <div class="pw"><input class="fi" id="p" type="password" autocomplete="current-password"><button type="button" id="eye" aria-label="إظهار كلمة المرور"><i class="fa-regular fa-eye"></i></button></div>
+  <div class="msg" id="m" role="alert" tabindex="-1"></div>
+  <button class="btn-main" id="go">دخول</button>
+  <p class="alt">لسه مش عضو؟ <a href="signup.html">إنشاء حساب</a> · <a href="buy.html">اشترك الآن</a></p>
+  <p class="demo">تجربة: عضو <b>member / 1234</b> · إدارة <b>admin / admin123</b></p>
+</div></main>
+<script src="JS/app.js"></script>
+<script src="JS/login.js"></script>
+</body>
+</html>
